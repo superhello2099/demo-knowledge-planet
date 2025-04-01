@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>知识星球DEMO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+        }
+        .gradient-text {
+            background: linear-gradient(120deg, #4f46e5, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .article-link {
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+        .article-link:hover {
+            background-color: #f1f5f9;
+            transform: translateX(5px);
+            border-left-color: currentColor;
+        }
+        .preview-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        .preview-image:hover {
+            transform: scale(1.02);
+        }
+        .stats-item {
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .stats-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* 增强移动端适配 */
+        @media (max-width: 640px) {
+            .preview-image {
+                height: 180px;
+            }
+            .card-hover {
+                margin-bottom: 1.5rem;
+            }
+            .stats-item {
+                padding: 1rem;
+            }
+            h1.gradient-text {
+                font-size: 2.5rem;
+            }
+            .article-link {
+                padding: 0.75rem;
+            }
+        }
+
+        /* 平板设备适配 */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .preview-image {
+                height: 220px;
+            }
+            .card-hover {
+                margin-bottom: 2rem;
+            }
+        }
+
+        /* 动画类 */
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 滚动条美化 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c7d2fe;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #818cf8;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-b from-indigo-50 to-white">
+        <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+            <h1 class="text-4xl sm:text-5xl font-bold text-center gradient-text mb-4">知识星球DEMO</h1>
+            <p class="text-lg sm:text-xl text-center text-gray-600 max-w-2xl mx-auto px-4">探索专业知识的无限可能，连接智慧的星辰大海</p>
+            
+            <!-- Stats Section -->
+            <div class="mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto px-4">
+                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-sm stats-item text-center">
+                    <div class="text-2xl sm:text-3xl font-bold text-indigo-600 mb-2">3</div>
+                    <div class="text-gray-600">精品专栏</div>
+                </div>
+                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-sm stats-item text-center">
+                    <div class="text-2xl sm:text-3xl font-bold text-indigo-600 mb-2">9</div>
+                    <div class="text-gray-600">精选文章</div>
+                </div>
+                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-sm stats-item text-center">
+                    <div class="text-2xl sm:text-3xl font-bold text-indigo-600 mb-2">3</div>
+                    <div class="text-gray-600">核心领域</div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <!-- Category Navigation -->
+        <nav class="mb-8 sm:mb-12">
+            <ul class="flex flex-wrap justify-center gap-3 sm:gap-4">
+                <li>
+                    <a href="#ai" class="px-4 sm:px-6 py-2 bg-purple-100 text-purple-700 rounded-full hover:bg-purple-200 transition-colors inline-block">
+                        AI与哲学
+                    </a>
+                </li>
+                <li>
+                    <a href="#blockchain" class="px-4 sm:px-6 py-2 bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition-colors inline-block">
+                        区块链金融
+                    </a>
+                </li>
+                <li>
+                    <a href="#poker" class="px-4 sm:px-6 py-2 bg-green-100 text-green-700 rounded-full hover:bg-green-200 transition-colors inline-block">
+                        德扑思维
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <!-- AI时代的老庄智慧研究所 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                <div class="p-8">
+                    <img src="articles/images/样图2.png" alt="AI时代的老庄智慧研究所" class="preview-image">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-brain text-2xl text-purple-600"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-900">AI时代的老庄智慧研究所</h2>
+                            <p class="text-sm text-gray-500 mt-1">演示版 · 精选篇章</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 text-lg">探索老庄哲学与AI发展的辩证关系，寻找传统智慧在现代科技中的新诠释。</p>
+                    <div class="space-y-4">
+                        <a href="articles/AI时代的老庄智慧研究所/（开篇）「道法自然」AI时代的老庄智慧研究所——欢迎进入古今交融的思想殿堂.html" class="block article-link p-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-book-open text-purple-500 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h3 class="font-medium text-gray-900 text-lg">开篇：道法自然</h3>
+                                    <p class="text-gray-500 mt-1">欢迎进入古今交融的思想殿堂</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="articles/AI时代的老庄智慧研究所/（选文1）第一课：道法自然：老庄哲学的核心与AI发展的辩证关系.html" class="block article-link p-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-lightbulb text-purple-500 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h3 class="font-medium text-gray-900 text-lg">第一课：道法自然</h3>
+                                    <p class="text-gray-500 mt-1">老庄哲学的核心与AI发展的辩证关系</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="articles/AI时代的老庄智慧研究所/（选文2）第二十三课：天下莫不知，莫能行：AI安全与风险控制.html" class="block article-link p-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-shield-alt text-purple-500 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h3 class="font-medium text-gray-900 text-lg">第二十三课：天下莫不知，莫能行</h3>
+                                    <p class="text-gray-500 mt-1">AI安全与风险控制深度探讨</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 区块链金融：从入门到精通 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                <div class="p-8">
+                    <img src="articles/images/样图3.png" alt="区块链金融：从入门到精通" class="preview-image">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-link text-2xl text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-900">区块链金融：从入门到精通</h2>
+                            <p class="text-sm text-gray-500 mt-1">演示版 · 精选篇章</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 text-lg">系统学习区块链金融知识，掌握DeFi协议与资产安全的核心概念。</p>
+                    <div class="space-y-4">
+                        <a href="articles/区块链金融：从入门到精通/（开篇）区块链金融：信任重构与传统金融的进化路径.html" class="block article-link p-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-book text-blue-500 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h3 class="font-medium text-gray-900 text-lg">开篇：区块链金融</h3>
+                                    <p class="text-gray-500 mt-1">信任重构与传统金融的进化路径</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="articles/区块链金融：从入门到精通/（选文1）流动性挖矿与代币经济学：DeFi协议的增长引擎与可持续性设计.html" class="block article-link p-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-chart-line text-blue-500 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h3 class="font-medium text-gray-900 text-lg">流动性挖矿与代币经济学</h3>
+                                    <p class="text-gray-500 mt-1">DeFi协议的增长引擎与可持续性设计</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="articles/区块链金融：从入门到精通/（选文2）私钥安全与硬件钱包：区块链资产保护的终极指南.html" class="block article-link p-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-key text-blue-500 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h3 class="font-medium text-gray-900 text-lg">私钥安全与硬件钱包</h3>
+                                    <p class="text-gray-500 mt-1">区块链资产保护的终极指南</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 德扑思维实验室 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                <div class="p-8">
+                    <img src="articles/images/样图1.png" alt="德扑思维实验室" class="preview-image">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-chess text-2xl text-green-600"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-900">德扑思维实验室</h2>
+                            <p class="text-sm text-gray-500 mt-1">演示版 · 精选篇章</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 text-lg">通过德州扑克学习概率思维与决策方法，提升战略思考能力。</p>
+                    <div class="space-y-4">
+                        <a href="articles/德扑思维实验室/（开篇）德扑思维实验室——欢迎你进入概率与决策的殿堂.html" class="block article-link p-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-book text-green-500 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h3 class="font-medium text-gray-900 text-lg">开篇：德扑思维实验室</h3>
+                                    <p class="text-gray-500 mt-1">欢迎进入概率与决策的殿堂</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="articles/德扑思维实验室/（选文1）德州扑克基础概念与规则剖析.html" class="block article-link p-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-dice text-green-500 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h3 class="font-medium text-gray-900 text-lg">德州扑克基础概念与规则剖析</h3>
+                                    <p class="text-gray-500 mt-1">系统学习德扑基础知识</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="articles/德扑思维实验室/（选文2）扑克大师的情绪管理：如何在波动中保持最佳决策状态.html" class="block article-link p-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-brain text-green-500 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h3 class="font-medium text-gray-900 text-lg">扑克大师的情绪管理</h3>
+                                    <p class="text-gray-500 mt-1">如何在波动中保持最佳决策状态</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white mt-12 py-8 sm:py-12 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                <div class="text-center sm:text-left">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">关于我们</h3>
+                    <p class="text-gray-600">知识星球矩阵致力于为您提供高质量的专业知识内容，连接智慧，启迪未来。</p>
+                </div>
+                <div class="text-center sm:text-left">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">核心领域</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#ai" class="text-gray-600 hover:text-gray-900 transition-colors">AI与哲学思考</a></li>
+                        <li><a href="#blockchain" class="text-gray-600 hover:text-gray-900 transition-colors">区块链金融创新</a></li>
+                        <li><a href="#poker" class="text-gray-600 hover:text-gray-900 transition-colors">德扑思维训练</a></li>
+                    </ul>
+                </div>
+                <div class="text-center sm:text-left">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">更新时间</h3>
+                    <p class="text-gray-600">内容定期更新</p>
+                    <p class="text-gray-600">每周推送精选文章</p>
+                </div>
+            </div>
+            <div class="text-center mt-8 pt-8 border-t border-gray-100">
+                <p class="text-gray-600">© 2025 知识星球矩阵</p>
+                <div class="flex flex-col items-center justify-center mt-4 space-y-3">
+                    <img src="awake-above-logo-5.png" alt="AWAKE ABOVE" class="h-8 sm:h-10 object-contain">
+                    <p class="text-gray-500 text-sm">Powered by AWAKE ABOVE LIMITED</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 增强页面载入动画
+        document.addEventListener('DOMContentLoaded', () => {
+            // 统计卡片动画
+            const stats = document.querySelectorAll('.stats-item');
+            stats.forEach((stat, index) => {
+                setTimeout(() => {
+                    stat.style.opacity = '1';
+                    stat.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+
+            // 内容卡片动画
+            const cards = document.querySelectorAll('.card-hover');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, (index + 3) * 100); // 在统计卡片之后开始动画
+            });
+        });
+
+        // 添加滚动动画
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // 监听所有文章链接
+        document.querySelectorAll('.article-link').forEach(link => {
+            observer.observe(link);
+        });
+    </script>
+</body>
+</html> 

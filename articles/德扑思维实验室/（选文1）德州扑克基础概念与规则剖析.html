@@ -1,0 +1,414 @@
+
+    <!DOCTYPE html>
+    <html lang="zh">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>（选文1）德州扑克基础概念与规则剖析</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.0/github-markdown.min.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+            body {
+                font-family: 'Noto Sans SC', sans-serif;
+            }
+            .markdown-body {
+                box-sizing: border-box;
+                min-width: 200px;
+                max-width: 980px;
+                margin: 0 auto;
+                padding: 45px;
+            }
+            .banner-image {
+                width: 100%;
+                max-width: 800px;
+                height: auto;
+                margin: 0 auto 2rem auto;
+                display: block;
+                border-radius: 0.5rem;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            }
+            .progress-bar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 0%;
+                height: 3px;
+                background: linear-gradient(to right, #4f46e5, #7c3aed);
+                z-index: 1000;
+                transition: width 0.2s ease;
+            }
+            .back-to-top {
+                position: fixed;
+                bottom: 2rem;
+                right: 2rem;
+                background: white;
+                width: 3rem;
+                height: 3rem;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                cursor: pointer;
+                opacity: 0;
+                transition: all 0.3s ease;
+                color: #4f46e5;
+            }
+            .back-to-top:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.15);
+            }
+            .toc {
+                position: fixed;
+                left: 2rem;
+                top: 50%;
+                transform: translateY(-50%);
+                max-width: 250px;
+                max-height: 80vh;
+                overflow-y: auto;
+                background: white;
+                padding: 1rem;
+                border-radius: 0.5rem;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                display: none;
+            }
+            @media (min-width: 1400px) {
+                .toc {
+                    display: block;
+                }
+            }
+            @media (max-width: 767px) {
+                .markdown-body {
+                    padding: 15px;
+                }
+            }
+        </style>
+    </head>
+    <body class="bg-gray-50">
+        <div class="progress-bar"></div>
+        <header class="bg-white shadow-sm mb-8 sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 py-6">
+                <nav class="flex items-center justify-between">
+                    <a href="../../index.html" class="text-gray-600 hover:text-gray-900">
+                        <i class="fas fa-arrow-left mr-2"></i>返回首页
+                    </a>
+                    <div class="text-sm breadcrumbs text-gray-500">
+                        <span>德扑思维实验室</span>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                        <span>（选文1）德州扑克基础概念与规则剖析</span>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <article class="markdown-body bg-white shadow-lg rounded-lg overflow-hidden relative">
+            
+            <div class="toc">
+                <h3 class="text-lg font-bold mb-4">目录</h3>
+                <div id="toc-content"></div>
+            </div>
+            <h1 id="_1">德州扑克基础概念与规则剖析</h1>
+<p><em>本文是「德扑思维实验室」知识星球的第二篇核心内容，通过系统介绍德州扑克的基础规则和核心概念，为后续学习打下坚实基础。</em></p>
+<hr />
+<h2 id="_2">一、德州扑克的本质</h2>
+<p>德州扑克(Texas Hold'em)不仅仅是一种纸牌游戏，更是一个关于<strong>不完全信息下的决策系统</strong>。从本质上看，它是概率论、博弈论、心理学和资金管理的综合应用场景。</p>
+<p>在德州扑克中，玩家永远面临着三重挑战：</p>
+<ol>
+<li><strong>信息不对称</strong> - 你只知道自己的底牌，对手的底牌和未发出的公共牌均为未知</li>
+<li><strong>概率的动态变化</strong> - 随着每轮公共牌的发出，获胜概率不断变化</li>
+<li><strong>人为干扰因素</strong> - 对手的策略、心理状态和行动会影响决策环境</li>
+</ol>
+<p>因此，成功的德州扑克玩家不是靠"运气"取胜，而是通过在这种复杂环境中做出<strong>期望值最大化</strong>的决策，实现长期盈利。</p>
+<h2 id="_3">二、基本游戏设置</h2>
+<h3 id="1">1. 游戏道具</h3>
+<ul>
+<li><strong>扑克牌</strong>：标准的52张扑克牌（去掉大小王）</li>
+<li><strong>筹码</strong>：代表价值的游戏单位，不同面值代表不同金额</li>
+<li><strong>庄家按钮(Dealer Button)</strong>：一个圆形标记，表示发牌位置，每轮结束后顺时针移动</li>
+</ul>
+<h3 id="2">2. 玩家人数与座位</h3>
+<ul>
+<li><strong>标准玩家数</strong>：2-10人（最常见为6-9人）</li>
+<li><strong>座位排列</strong>：围绕牌桌呈圆形排列，顺时针行动</li>
+<li><strong>位置命名</strong>：按照相对于庄家按钮的位置，分为早位、中位和后位</li>
+</ul>
+<h3 id="3">3. 盲注系统</h3>
+<p>盲注是德州扑克中的强制下注，确保每手牌都有底池，激励玩家参与。</p>
+<ul>
+<li><strong>小盲注(Small Blind, SB)</strong>：庄家按钮左侧第一个位置，通常为最小下注单位</li>
+<li><strong>大盲注(Big Blind, BB)</strong>：小盲注左侧，通常为小盲注的两倍</li>
+</ul>
+<p><strong>盲注的意义</strong>：</p>
+<ul>
+<li>创造初始底池，提供参与动机</li>
+<li>作为下注的基本计量单位（通常以大盲注为单位描述下注大小）</li>
+<li>随着时间推移，盲注可能会增加（比赛模式），增加游戏紧迫感</li>
+</ul>
+<h2 id="_4">三、游戏流程详解</h2>
+<p>德州扑克的一手牌分为四个下注轮次和一个比牌阶段（如有必要）。</p>
+<h3 id="1-preflop">1. 发底牌与翻牌前(Preflop)阶段</h3>
+<ul>
+<li><strong>底牌发放</strong>：每位玩家获得2张面朝下的底牌（只有自己可以看）</li>
+<li><strong>首轮下注</strong>：从小盲注左侧第一位玩家（通常称为"枪口位"）开始，顺时针行动</li>
+<li><strong>行动选择</strong>：可以选择跟注(Call)、加注(Raise)或弃牌(Fold)</li>
+<li><strong>轮次结束</strong>：当所有玩家的下注金额相等，或者只剩一名玩家时结束</li>
+</ul>
+<h3 id="2-flop">2. 翻牌圈(Flop)</h3>
+<ul>
+<li><strong>发放公共牌</strong>：荷官面朝上发放3张公共牌（所有人都可见）</li>
+<li><strong>第二轮下注</strong>：从庄家按钮左侧第一位仍在牌局中的玩家开始行动</li>
+<li><strong>行动选择</strong>：可以选择看牌(Check)、下注(Bet)、跟注(Call)、加注(Raise)或弃牌(Fold)</li>
+<li><strong>轮次结束</strong>：同翻牌前轮次结束条件相同</li>
+</ul>
+<h3 id="3-turn">3. 转牌圈(Turn)</h3>
+<ul>
+<li><strong>发放第四张公共牌</strong>：荷官面朝上发放第四张公共牌</li>
+<li><strong>第三轮下注</strong>：行动顺序和选择与翻牌圈相同</li>
+<li><strong>注意</strong>：在限注德州扑克中，转牌和河牌的下注额度通常是翻牌前和翻牌圈的两倍</li>
+</ul>
+<h3 id="4-river">4. 河牌圈(River)</h3>
+<ul>
+<li><strong>发放第五张公共牌</strong>：荷官面朝上发放最后一张公共牌</li>
+<li><strong>最后一轮下注</strong>：行动顺序和选择与前两轮相同</li>
+<li><strong>特殊考量</strong>：这是最后的下注机会，玩家决策更加关键</li>
+</ul>
+<h3 id="5-showdown">5. 摊牌阶段(Showdown)</h3>
+<ul>
+<li><strong>激活条件</strong>：如果河牌圈结束后仍有多名玩家，则进入摊牌阶段</li>
+<li><strong>展示顺序</strong>：最后一个主动下注或加注的玩家先亮牌，如果河牌圈没有下注，则从小盲注位置顺时针亮牌</li>
+<li><strong>获胜判定</strong>：使用自己的2张底牌和5张公共牌中任意组合，形成最佳的5张牌组合，牌力最大者获胜</li>
+</ul>
+<h2 id="_5">四、牌型大小与基础概率</h2>
+<h3 id="1_1">1. 牌型排名（从大到小）</h3>
+<ol>
+<li>
+<p><strong>皇家同花顺(Royal Flush)</strong> - 同花色的A-K-Q-J-10 <em>概率：约0.0032%</em></p>
+</li>
+<li>
+<p><strong>同花顺(Straight Flush)</strong> - 同花色的连续五张牌 <em>概率：约0.028%</em></p>
+</li>
+<li>
+<p><strong>四条(Four of a Kind)</strong> - 四张相同点数的牌 <em>概率：约0.168%</em></p>
+</li>
+<li>
+<p><strong>葫芦(Full House)</strong> - 三张相同点数的牌+一对 <em>概率：约2.60%</em></p>
+</li>
+<li>
+<p><strong>同花(Flush)</strong> - 五张相同花色的牌 <em>概率：约3.03%</em></p>
+</li>
+<li>
+<p><strong>顺子(Straight)</strong> - 五张连续点数的牌（花色可不同） <em>概率：约4.62%</em></p>
+</li>
+<li>
+<p><strong>三条(Three of a Kind)</strong> - 三张相同点数的牌 <em>概率：约4.83%</em></p>
+</li>
+<li>
+<p><strong>两对(Two Pair)</strong> - 两个不同的对子 <em>概率：约23.5%</em></p>
+</li>
+<li>
+<p><strong>一对(One Pair)</strong> - 一个对子 <em>概率：约43.8%</em></p>
+</li>
+<li>
+<p><strong>高牌(High Card)</strong> - 不符合以上任何牌型 <em>概率：约17.4%</em></p>
+</li>
+</ol>
+<h3 id="2_1">2. 牌型比较规则</h3>
+<ul>
+<li><strong>不同牌型之间</strong>：牌型排名高者获胜</li>
+<li><strong>相同牌型之间</strong>：比较牌型内的最高点数，如果仍相同，则依次比较次高点数，以此类推</li>
+<li><strong>完全相同</strong>：平分底池（极少发生）</li>
+</ul>
+<h3 id="3_1">3. 点数与花色</h3>
+<ul>
+<li><strong>点数排序</strong>：A(最大) &gt; K &gt; Q &gt; J &gt; 10 &gt; 9 &gt; 8 &gt; 7 &gt; 6 &gt; 5 &gt; 4 &gt; 3 &gt; 2<ul>
+<li><em>特例</em>：在顺子中，A可以作为最高牌(A-K-Q-J-10)或最低牌(5-4-3-2-A)</li>
+</ul>
+</li>
+<li><strong>花色地位</strong>：在德州扑克中，四种花色（黑桃、红桃、方块、梅花）<strong>地位相同</strong><ul>
+<li><em>注意</em>：某些其他扑克变种中花色可能有高低之分，但德州扑克中没有</li>
+</ul>
+</li>
+</ul>
+<h2 id="_6">五、基本行动与术语解析</h2>
+<h3 id="1_2">1. 基本行动</h3>
+<ul>
+<li><strong>看牌(Check)</strong> - 在没有面临下注时选择不下注，保留后续行动权</li>
+<li><strong>下注(Bet)</strong> - 首先向底池投入筹码</li>
+<li><strong>跟注(Call)</strong> - 投入与当前下注相等的筹码</li>
+<li><strong>加注(Raise)</strong> - 增加当前下注额度</li>
+<li><strong>再加注(Re-raise)</strong> - 对他人的加注再次提高注额</li>
+<li><strong>弃牌(Fold)</strong> - 放弃当前手牌，退出本轮牌局</li>
+<li><strong>全下(All-in)</strong> - 押上所有剩余筹码</li>
+</ul>
+<h3 id="2_2">2. 专业术语</h3>
+<ul>
+<li><strong>底池(Pot)</strong> - 所有玩家投入的筹码总和</li>
+<li><strong>边池(Side Pot)</strong> - 当一名或多名玩家全下时，额外形成的底池</li>
+<li><strong>盲注(Blinds)</strong> - 强制下注，包括小盲注和大盲注</li>
+<li><strong>位置(Position)</strong> - 玩家相对于庄家按钮的座次</li>
+<li><strong>枪口位(Under the Gun, UTG)</strong> - 大盲注左侧第一个行动的位置</li>
+<li><strong>切牌位(Cut-off)</strong> - 庄家按钮右侧的位置</li>
+<li><strong>偷盲(Steal)</strong> - 后位玩家加注试图赢得盲注的行为</li>
+<li><strong>防守盲注(Defend Blinds)</strong> - 盲注位置玩家抵抗偷盲的行为</li>
+<li><strong>C-bet(Continuation Bet)</strong> - 翻牌前加注者在翻牌后继续下注</li>
+<li><strong>诈唬(Bluff)</strong> - 使用弱牌下注或加注，试图让持有更强牌的对手弃牌</li>
+<li><strong>半诈唬(Semi-Bluff)</strong> - 使用有改进可能的弱牌进行诈唬</li>
+</ul>
+<h2 id="_7">六、底池结构与规则</h2>
+<h3 id="1_3">1. 主池与边池</h3>
+<p>当一名或多名玩家全下(All-in)时，会形成主池和边池：</p>
+<ul>
+<li><strong>主池(Main Pot)</strong> - 所有参与者都可以争夺的底池部分</li>
+<li><strong>边池(Side Pot)</strong> - 全下玩家无法争夺的额外底池部分</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<ul>
+<li>玩家A全下10筹码</li>
+<li>玩家B和C各有100筹码，都选择跟注</li>
+<li>形成主池30筹码（每人10），玩家A、B、C都可以争夺</li>
+<li>B和C之间可能继续下注，形成只有B和C可以争夺的边池</li>
+</ul>
+<h3 id="2_3">2. 特殊规则</h3>
+<ul>
+<li><strong>无法中途退出</strong> - 一旦跟注，筹码已投入底池，不能收回</li>
+<li><strong>只能加注当前下注的一倍或以上</strong> - 加注必须至少为当前下注的两倍（某些变体规则可能有所不同）</li>
+<li><strong>口头声明具有约束力</strong> - 在正规场合，口头宣布的行动具有约束力</li>
+<li><strong>行动顺序错误</strong> - 如果玩家在轮到自己之前行动，可能面临处罚</li>
+</ul>
+<h2 id="_8">七、德州扑克的基本策略框架</h2>
+<p>虽然详细策略将在后续文章中展开，这里提供基本框架：</p>
+<h3 id="1_4">1. 起手牌选择</h3>
+<ul>
+<li><strong>位置越早，标准越严格</strong> - 早位应该只玩最强的起手牌</li>
+<li><strong>位置越晚，可以更灵活</strong> - 后位可以玩更多边缘性牌</li>
+<li><strong>起手牌强度考量因素</strong> - 高牌价值、配对性、同花可能性、连牌可能性、位置</li>
+</ul>
+<h3 id="2_4">2. 位置重要性</h3>
+<ul>
+<li><strong>早位(Early Position)</strong> - 信息少，行动受限，需要更强的牌力</li>
+<li><strong>中位(Middle Position)</strong> - 有部分信息，适中的灵活性</li>
+<li><strong>后位(Late Position)</strong> - 信息充分，最大的灵活性，可以利用位置优势</li>
+</ul>
+<h3 id="3_2">3. 基本概率思维</h3>
+<ul>
+<li><strong>出牌(Outs)</strong> - 能改善你牌力的未知牌</li>
+<li><strong>计算概率的简便方法</strong>：<ul>
+<li>转牌前（还有两张牌）：出牌数 × 4 ≈ 命中概率%</li>
+<li>河牌前（还有一张牌）：出牌数 × 2 ≈ 命中概率%</li>
+</ul>
+</li>
+</ul>
+<h3 id="4">4. 底池赔率</h3>
+<ul>
+<li><strong>底池赔率(Pot Odds)</strong> - 底池大小与需要跟注的筹码之比</li>
+<li><strong>基本原则</strong> - 当命中概率大于底池赔率时，跟注有利；反之则不利</li>
+</ul>
+<h2 id="_9">八、不同类型的德州扑克</h2>
+<h3 id="1_5">1. 按下注结构分类</h3>
+<ul>
+<li><strong>固定限注(Limit Hold'em)</strong> - 下注额度固定，每轮下注次数有限</li>
+<li><strong>底池限注(Pot-Limit Hold'em)</strong> - 最大下注额度为当前底池大小</li>
+<li><strong>无限注(No-Limit Hold'em)</strong> - 可以随时全下，最流行的变种</li>
+</ul>
+<h3 id="2_5">2. 按游戏形式分类</h3>
+<ul>
+<li><strong>现金局(Cash Game)</strong> - 筹码代表实际价值，可随时进出</li>
+<li><strong>比赛局(Tournament)</strong> - 支付固定买入费，获得固定筹码，按排名分配奖金</li>
+<li><strong>坐满即玩(Sit and Go)</strong> - 迷你比赛，通常一桌或几桌</li>
+</ul>
+<h2 id="_10">九、理解游戏节奏</h2>
+<h3 id="1_6">1. 游戏阶段</h3>
+<ul>
+<li><strong>早期</strong> - 玩家筹码充足，可以更谨慎选择牌局</li>
+<li><strong>中期</strong> - 筹码深度减少，需要适当调整策略</li>
+<li><strong>后期</strong> - 筹码与盲注比例较小，需要更积极主动</li>
+</ul>
+<h3 id="2_6">2. 牌桌类型</h3>
+<ul>
+<li><strong>紧(Tight)</strong> - 玩家很少进入底池，通常只玩强牌</li>
+<li><strong>松(Loose)</strong> - 玩家频繁参与底池，玩很多边缘性牌</li>
+<li><strong>被动(Passive)</strong> - 玩家倾向于跟注而非加注</li>
+<li><strong>激进(Aggressive)</strong> - 玩家经常加注和再加注</li>
+</ul>
+<p>识别牌桌风格对制定合适的策略至关重要。</p>
+<h2 id="10">十、初学者最常见的10个错误</h2>
+<ol>
+<li><strong>玩太多起手牌</strong> - 缺乏耐心和选择性</li>
+<li><strong>忽视位置重要性</strong> - 不根据位置调整牌力要求</li>
+<li><strong>不理解底池赔率</strong> - 盲目跟注或不该跟的时候弃牌</li>
+<li><strong>被情绪左右决策</strong> - 让短期结果影响判断</li>
+<li><strong>过度重视底牌</strong> - 无法在不利牌面弃掉强底牌</li>
+<li><strong>不会合理下注</strong> - 下注大小与目的不匹配</li>
+<li><strong>缺乏一致性</strong> - 策略经常变化，无法被对手"读错"</li>
+<li><strong>忽视桌面动态</strong> - 不适应对手和牌桌风格</li>
+<li><strong>资金管理不当</strong> - 玩超出bankroll能承受的级别</li>
+<li><strong>不学习和改进</strong> - 持续犯同样的错误而不反思</li>
+</ol>
+<h2 id="_11">结语：从此开始你的德扑之旅</h2>
+<p>德州扑克是一个看似简单实则深奥的游戏，掌握基础规则只是第一步。真正的技巧在于如何在这些规则下制定最优决策，以及如何根据不断变化的情况调整策略。</p>
+<p>在「德扑思维实验室」的后续内容中，我们将深入探讨每个环节的高级策略，从科学的起手牌选择，到精准的读牌技巧，再到复杂的多层次思考。</p>
+<p>记住，德州扑克不仅是一种游戏，更是一种思维训练。通过不断学习和实践，你将逐步建立起系统化的决策框架，这不仅能帮助你在牌桌上取得成功，更能应用于生活中的各种决策场景。</p>
+<p><strong>下一篇预告</strong>：《科学的起手牌选择系统》，我们将详细探讨如何根据位置、对手类型和其他因素，建立一个基于数学和逻辑的起手牌选择体系。</p>
+<hr />
+<p><strong>互动环节</strong>：</p>
+<ol>
+<li>你在德州扑克规则中有哪些疑问？</li>
+<li>你遇到过哪些让你困惑的特殊情况？</li>
+<li>在下一篇文章中，你最想了解关于起手牌选择的哪些具体方面？</li>
+</ol>
+<p>欢迎在评论区留言分享你的问题和想法！</p>
+<hr />
+<p><em>附注：我已在置顶消息更新了《德扑术语速查表》，增加了20个常用术语的解释，建议收藏备用。</em></p>
+        </article>
+        <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <footer class="bg-white mt-12 py-6">
+            <div class="max-w-7xl mx-auto px-4 text-center text-gray-600">
+                <p>© 2025 知识星球矩阵. All rights reserved.</p>
+            </div>
+        </footer>
+        <script>
+            // 阅读进度条
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.querySelector('.progress-bar').style.width = scrolled + '%';
+                
+                // 返回顶部按钮
+                const backToTop = document.querySelector('.back-to-top');
+                if (winScroll > 300) {
+                    backToTop.style.opacity = '1';
+                } else {
+                    backToTop.style.opacity = '0';
+                }
+            });
+
+            // 生成目录
+            document.addEventListener('DOMContentLoaded', () => {
+                const article = document.querySelector('.markdown-body');
+                const toc = document.querySelector('#toc-content');
+                const headings = article.querySelectorAll('h1, h2, h3');
+                const tocItems = [];
+
+                headings.forEach((heading, index) => {
+                    const id = `heading-${index}`;
+                    heading.id = id;
+                    const level = parseInt(heading.tagName.charAt(1));
+                    tocItems.push(`
+                        <div class="pl-${(level-1)*4} py-1">
+                            <a href="#${id}" class="text-gray-600 hover:text-gray-900 text-sm">
+                                ${heading.textContent}
+                            </a>
+                        </div>
+                    `);
+                });
+
+                toc.innerHTML = tocItems.join('');
+            });
+        </script>
+    </body>
+    </html>
+    
