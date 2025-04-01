@@ -113,49 +113,61 @@ def convert_markdown_to_html():
             @media (max-width: 767px) {{
                 body {{
                     background-color: #ffffff;
+                    padding-top: 0;
+                    margin: 0;
                 }}
                 article {{
                     margin: 0;
                     border-radius: 0;
                     box-shadow: none;
+                    padding: 0;
                 }}
                 .markdown-body {{
                     padding: 1rem;
                     margin: 0;
                     font-size: 16px;
-                    line-height: 1.6;
+                    line-height: 1.8;
                     color: #000000;
+                    background: #ffffff;
                 }}
                 .markdown-body h1 {{
                     font-size: 1.5rem;
-                    margin-top: 1rem;
-                    margin-bottom: 1rem;
-                    font-weight: 600;
+                    margin: 1.5rem 0 1rem;
+                    font-weight: 700;
                     color: #000000;
+                    line-height: 1.4;
                 }}
                 .markdown-body h2 {{
                     font-size: 1.25rem;
-                    margin-top: 1.5rem;
-                    margin-bottom: 0.75rem;
+                    margin: 1.5rem 0 0.75rem;
                     font-weight: 600;
                     color: #000000;
+                    line-height: 1.4;
                 }}
                 .markdown-body h3 {{
                     font-size: 1.125rem;
-                    margin-top: 1.25rem;
-                    margin-bottom: 0.75rem;
+                    margin: 1.25rem 0 0.75rem;
                     font-weight: 600;
                     color: #000000;
+                    line-height: 1.4;
                 }}
                 .markdown-body p {{
-                    margin-bottom: 1rem;
+                    margin: 0 0 1rem;
                     opacity: 1;
                     color: #000000;
+                    line-height: 1.8;
                 }}
                 .markdown-body ul,
                 .markdown-body ol {{
-                    margin-bottom: 1rem;
+                    margin: 0 0 1rem;
                     padding-left: 1.5rem;
+                    color: #000000;
+                }}
+                .markdown-body li {{
+                    margin-bottom: 0.5rem;
+                }}
+                .markdown-body strong {{
+                    font-weight: 600;
                     color: #000000;
                 }}
                 header {{
@@ -173,17 +185,22 @@ def convert_markdown_to_html():
                 header a {{
                     display: flex;
                     align-items: center;
-                    padding: 1rem;
+                    padding: 0.875rem 1rem;
                     font-size: 1rem;
                     color: #4f46e5;
                     background: #ffffff;
+                    font-weight: 500;
+                }}
+                header a i {{
+                    margin-right: 0.5rem;
                 }}
                 .banner-image {{
                     margin: 0;
                     width: 100%;
                     border-radius: 0;
-                    max-height: 300px;
+                    max-height: 240px;
                     object-fit: cover;
+                    box-shadow: none;
                 }}
                 .breadcrumbs {{
                     display: none;
@@ -192,6 +209,17 @@ def convert_markdown_to_html():
                     margin-top: 2rem;
                     padding: 1rem;
                     border-top: 1px solid #f0f0f0;
+                    text-align: center;
+                    color: #666666;
+                    font-size: 0.875rem;
+                }}
+                .back-to-top {{
+                    bottom: 1.5rem;
+                    right: 1.5rem;
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    background: rgba(255, 255, 255, 0.9);
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
                 }}
             }}
         </style>
