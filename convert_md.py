@@ -32,6 +32,7 @@ def convert_markdown_to_html():
             @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
             body {{
                 font-family: 'Noto Sans SC', sans-serif;
+                color: #1f2937;
             }}
             .markdown-body {{
                 box-sizing: border-box;
@@ -39,6 +40,7 @@ def convert_markdown_to_html():
                 max-width: 980px;
                 margin: 0 auto;
                 padding: 45px;
+                color: #1f2937;
             }}
             .banner-image {{
                 width: 100%;
@@ -102,6 +104,38 @@ def convert_markdown_to_html():
             @media (max-width: 767px) {{
                 .markdown-body {{
                     padding: 15px;
+                    font-size: 16px;
+                    line-height: 1.6;
+                }}
+                .markdown-body h1 {{
+                    font-size: 1.75rem;
+                    margin-top: 1rem;
+                }}
+                .markdown-body h2 {{
+                    font-size: 1.5rem;
+                    margin-top: 1.5rem;
+                }}
+                .markdown-body p {{
+                    margin-bottom: 1rem;
+                }}
+                header .breadcrumbs {{
+                    display: none;
+                }}
+                header {{
+                    padding: 0.5rem 0;
+                }}
+                header a {{
+                    display: flex;
+                    align-items: center;
+                    padding: 0.5rem 1rem;
+                    font-size: 1rem;
+                    color: #4f46e5;
+                }}
+                .banner-image {{
+                    margin: 0 -15px 1rem -15px;
+                    width: calc(100% + 30px);
+                    max-width: none;
+                    border-radius: 0;
                 }}
             }}
         </style>
