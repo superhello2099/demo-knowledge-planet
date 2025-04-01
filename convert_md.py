@@ -100,9 +100,10 @@ def convert_markdown_to_html():
 
             .markdown-body p {{
                 margin: 0 0 1.25rem;
-                font-weight: 400;
+                font-weight: 300;
                 color: var(--text-color);
                 line-height: 1.8;
+                text-align: justify;
             }}
 
             .markdown-body strong {{
@@ -136,7 +137,7 @@ def convert_markdown_to_html():
                 z-index: 1000;
                 background: var(--bg-color);
                 border: 1px solid var(--border-color);
-                padding: 0.5rem;
+                padding: 0.75rem 1rem;
                 border-radius: 0.5rem;
                 cursor: pointer;
                 transition: all 0.3s ease;
@@ -145,11 +146,16 @@ def convert_markdown_to_html():
                 gap: 0.5rem;
                 font-size: 0.875rem;
                 color: var(--text-color);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }}
 
             .theme-toggle:hover {{
                 transform: translateY(-2px);
                 box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            }}
+
+            .theme-toggle i {{
+                font-size: 1rem;
             }}
 
             .progress-bar {{
@@ -240,11 +246,48 @@ def convert_markdown_to_html():
             @media (max-width: 767px) {{
                 .markdown-body {{
                     padding: 1.25rem;
+                    font-size: 16px;
+                }}
+
+                .markdown-body p {{
+                    font-weight: 300;
+                    margin-bottom: 1rem;
+                }}
+
+                .markdown-body h1 {{
+                    font-size: 1.75rem;
+                }}
+
+                .markdown-body h2 {{
+                    font-size: 1.375rem;
+                }}
+
+                .markdown-body h3 {{
+                    font-size: 1.25rem;
+                }}
+
+                article {{
+                    margin: 0.5rem;
                 }}
 
                 .theme-toggle {{
-                    top: 1rem;
-                    right: 1rem;
+                    top: 0.75rem;
+                    right: 0.75rem;
+                    padding: 0.5rem 0.75rem;
+                }}
+
+                .theme-toggle .theme-text {{
+                    display: none;
+                }}
+            }}
+
+            @media (min-width: 768px) {{
+                .theme-toggle {{
+                    opacity: 0.9;
+                }}
+
+                .theme-toggle:hover {{
+                    opacity: 1;
                 }}
             }}
 
