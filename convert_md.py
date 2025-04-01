@@ -111,41 +111,61 @@ def convert_markdown_to_html():
                 }}
             }}
             @media (max-width: 767px) {{
+                body {{
+                    background-color: #ffffff;
+                }}
                 article {{
                     margin: 0;
                     border-radius: 0;
+                    box-shadow: none;
                 }}
                 .markdown-body {{
                     padding: 1rem;
                     margin: 0;
                     font-size: 16px;
                     line-height: 1.6;
+                    color: #000000;
                 }}
                 .markdown-body h1 {{
                     font-size: 1.5rem;
                     margin-top: 1rem;
                     margin-bottom: 1rem;
                     font-weight: 600;
+                    color: #000000;
                 }}
                 .markdown-body h2 {{
                     font-size: 1.25rem;
                     margin-top: 1.5rem;
                     margin-bottom: 0.75rem;
                     font-weight: 600;
+                    color: #000000;
                 }}
                 .markdown-body h3 {{
                     font-size: 1.125rem;
                     margin-top: 1.25rem;
                     margin-bottom: 0.75rem;
                     font-weight: 600;
+                    color: #000000;
                 }}
                 .markdown-body p {{
                     margin-bottom: 1rem;
                     opacity: 1;
+                    color: #000000;
+                }}
+                .markdown-body ul,
+                .markdown-body ol {{
+                    margin-bottom: 1rem;
+                    padding-left: 1.5rem;
+                    color: #000000;
                 }}
                 header {{
                     margin: 0;
                     padding: 0;
+                    position: sticky;
+                    top: 0;
+                    background: #ffffff;
+                    z-index: 50;
+                    border-bottom: 1px solid #f0f0f0;
                 }}
                 header .max-w-7xl {{
                     padding: 0;
@@ -162,6 +182,16 @@ def convert_markdown_to_html():
                     margin: 0;
                     width: 100%;
                     border-radius: 0;
+                    max-height: 300px;
+                    object-fit: cover;
+                }}
+                .breadcrumbs {{
+                    display: none;
+                }}
+                footer {{
+                    margin-top: 2rem;
+                    padding: 1rem;
+                    border-top: 1px solid #f0f0f0;
                 }}
             }}
         </style>
