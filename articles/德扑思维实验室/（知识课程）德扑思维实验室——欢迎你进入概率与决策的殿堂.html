@@ -1,69 +1,49 @@
-import os
-import markdown
-import glob
-import shutil
 
-def convert_markdown_to_html():
-    # Create images directory and copy images
-    os.makedirs('articles/images', exist_ok=True)
-    image_mapping = {
-        'AI时代的老庄智慧研究所': '样图2.png',
-        '区块链金融：从入门到精通': '样图3.png',
-        '德扑思维实验室': '样图1.png'
-    }
-    
-    # Copy images to articles directory
-    for image in image_mapping.values():
-        if os.path.exists(image):
-            shutil.copy2(image, f'articles/images/{image}')
-
-    # HTML template
-    html_template = """
     <!DOCTYPE html>
     <html lang="zh">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="color-scheme" content="light dark">
-        <title>{title}</title>
+        <title>知识课程：德扑思维实验室：提升战略思考力</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.0/github-markdown-light.min.css">
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
             
-            :root {{
+            :root {
                 --primary-color: #4f46e5;
                 --text-color: #1f2937;
                 --bg-color: #ffffff;
                 --bg-secondary: #f3f4f6;
                 --border-color: #e5e7eb;
-            }}
+            }
 
-            :root[data-theme="dark"] {{
+            :root[data-theme="dark"] {
                 --primary-color: #818cf8;
                 --text-color: #e5e7eb;
                 --bg-color: #111827;
                 --bg-secondary: #1f2937;
                 --border-color: #374151;
-            }}
+            }
 
-            * {{
+            * {
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
-            }}
+            }
 
-            body {{
+            body {
                 font-family: 'Noto Sans SC', sans-serif;
                 color: var(--text-color);
                 background-color: var(--bg-secondary);
                 -webkit-font-smoothing: antialiased;
                 transition: background-color 0.3s ease, color 0.3s ease;
-            }}
+            }
 
             /* 优化的 Markdown 样式 */
-            .markdown-body {{
+            .markdown-body {
                 background-color: var(--bg-color);
                 color: var(--text-color);
                 box-sizing: border-box;
@@ -74,52 +54,52 @@ def convert_markdown_to_html():
                 line-height: 1.8;
                 font-weight: 400;
                 transition: background-color 0.3s ease, color 0.3s ease;
-            }}
+            }
 
-            .markdown-body h1 {{
+            .markdown-body h1 {
                 font-size: 2rem;
                 font-weight: 700;
                 margin: 2rem 0 1.5rem;
                 color: var(--text-color);
                 letter-spacing: -0.025em;
-            }}
+            }
 
-            .markdown-body h2 {{
+            .markdown-body h2 {
                 font-size: 1.5rem;
                 font-weight: 600;
                 margin: 1.75rem 0 1rem;
                 color: var(--text-color);
-            }}
+            }
 
-            .markdown-body h3 {{
+            .markdown-body h3 {
                 font-size: 1.25rem;
                 font-weight: 500;
                 margin: 1.5rem 0 0.75rem;
                 color: var(--text-color);
-            }}
+            }
 
-            .markdown-body p {{
+            .markdown-body p {
                 margin: 0 0 1.25rem;
                 font-weight: 400;
                 color: var(--text-color);
                 line-height: 1.8;
-            }}
+            }
 
-            .markdown-body strong {{
+            .markdown-body strong {
                 font-weight: 500;
                 color: var(--text-color);
-            }}
+            }
 
-            article {{
+            article {
                 background: var(--bg-color);
                 margin: 1rem;
                 border-radius: 0.75rem;
                 overflow: hidden;
                 box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
                 transition: background-color 0.3s ease;
-            }}
+            }
 
-            .banner-image {{
+            .banner-image {
                 width: 100%;
                 max-width: 800px;
                 height: auto;
@@ -127,9 +107,9 @@ def convert_markdown_to_html():
                 display: block;
                 border-radius: 0.75rem;
                 box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            }}
+            }
 
-            .theme-toggle {{
+            .theme-toggle {
                 position: fixed;
                 top: 1.5rem;
                 right: 1.5rem;
@@ -145,14 +125,14 @@ def convert_markdown_to_html():
                 gap: 0.5rem;
                 font-size: 0.875rem;
                 color: var(--text-color);
-            }}
+            }
 
-            .theme-toggle:hover {{
+            .theme-toggle:hover {
                 transform: translateY(-2px);
                 box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            }}
+            }
 
-            .progress-bar {{
+            .progress-bar {
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -161,9 +141,9 @@ def convert_markdown_to_html():
                 background: var(--primary-color);
                 z-index: 1000;
                 transition: width 0.2s ease;
-            }}
+            }
 
-            .back-to-top {{
+            .back-to-top {
                 position: fixed;
                 bottom: 2rem;
                 right: 2rem;
@@ -180,9 +160,9 @@ def convert_markdown_to_html():
                 transition: all 0.3s ease;
                 color: var(--primary-color);
                 border: 1px solid var(--border-color);
-            }}
+            }
 
-            .toc {{
+            .toc {
                 position: fixed;
                 left: 2rem;
                 top: 50%;
@@ -197,84 +177,84 @@ def convert_markdown_to_html():
                 display: none;
                 border: 1px solid var(--border-color);
                 transition: background-color 0.3s ease;
-            }}
+            }
 
-            .toc a {{
+            .toc a {
                 color: var(--text-color);
                 text-decoration: none;
                 transition: color 0.2s ease;
-            }}
+            }
 
-            .toc a:hover {{
+            .toc a:hover {
                 color: var(--primary-color);
-            }}
+            }
 
-            header {{
+            header {
                 background: var(--bg-color);
                 border-bottom: 1px solid var(--border-color);
                 transition: background-color 0.3s ease;
-            }}
+            }
 
-            header a {{
+            header a {
                 color: var(--text-color);
                 text-decoration: none;
                 transition: color 0.2s ease;
-            }}
+            }
 
-            header a:hover {{
+            header a:hover {
                 color: var(--primary-color);
-            }}
+            }
 
-            footer {{
+            footer {
                 background: var(--bg-color);
                 color: var(--text-color);
                 transition: background-color 0.3s ease;
-            }}
+            }
 
-            @media (min-width: 1400px) {{
-                .toc {{
+            @media (min-width: 1400px) {
+                .toc {
                     display: block;
-                }}
-            }}
+                }
+            }
 
-            @media (max-width: 767px) {{
-                .markdown-body {{
+            @media (max-width: 767px) {
+                .markdown-body {
                     padding: 1.25rem;
-                }}
+                }
 
-                .theme-toggle {{
+                .theme-toggle {
                     top: 1rem;
                     right: 1rem;
-                }}
-            }}
+                }
+            }
 
             /* 代码块样式优化 */
-            .markdown-body pre {{
+            .markdown-body pre {
                 background-color: var(--bg-secondary) !important;
                 border: 1px solid var(--border-color);
                 border-radius: 0.5rem;
                 padding: 1rem;
                 margin: 1.5rem 0;
-            }}
+            }
 
-            .markdown-body code {{
+            .markdown-body code {
                 font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
                 font-size: 0.9em;
                 padding: 0.2em 0.4em;
                 border-radius: 0.25rem;
                 background-color: var(--bg-secondary);
                 color: var(--primary-color);
-            }}
+            }
 
             /* 引用块样式 */
-            .markdown-body blockquote {{
+            .markdown-body blockquote {
                 border-left: 4px solid var(--primary-color);
                 margin: 1.5rem 0;
                 padding: 0.5rem 1rem;
                 color: var(--text-color);
                 background-color: var(--bg-secondary);
                 border-radius: 0 0.5rem 0.5rem 0;
-            }}
+            }
         </style>
     </head>
     <body>
@@ -291,22 +271,131 @@ def convert_markdown_to_html():
                         <i class="fas fa-arrow-left mr-2"></i>返回首页
                     </a>
                     <div class="text-sm breadcrumbs opacity-75">
-                        <span>{category}</span>
+                        <span>德扑思维实验室</span>
                         <i class="fas fa-chevron-right mx-2"></i>
-                        <span>{title}</span>
+                        <span>知识课程：德扑思维实验室：提升战略思考力</span>
                     </div>
                 </nav>
             </div>
         </header>
         <article class="markdown-body shadow-lg rounded-lg overflow-hidden relative">
-            {banner_image}
+            <img src="../images/样图1.png" alt="知识课程：德扑思维实验室：提升战略思考力" class="banner-image">
             <div class="toc">
                 <h3 class="text-lg font-medium mb-4">目录</h3>
                 <div id="toc-content"></div>
             </div>
-            {content}
+            <h1 id="_1">德扑思维实验室——欢迎你进入概率与决策的殿堂</h1>
+<p>各位扑克爱好者，欢迎加入「德扑思维实验室」知识星球！我是星主，一位专注于德州扑克理论研究与实战应用的资深玩家。</p>
+<p>很高兴你选择加入这个社区。这里不仅仅是一个学习德州扑克技巧的地方，更是一个训练决策思维、概率思维和心理素质的实验室。</p>
+<h2 id="_2">为什么创建这个知识星球？</h2>
+<p>德州扑克是一个表面看似简单，实则深不可测的游戏。它不仅是一种娱乐方式，更是一门:</p>
+<ul>
+<li><strong>决策科学</strong> - 在不完全信息的环境下做出最优决策</li>
+<li><strong>概率应用</strong> - 实时计算和应用概率进行判断</li>
+<li><strong>心理博弈</strong> - 理解人性，控制情绪，读懂对手</li>
+<li><strong>资金管理</strong> - 科学配置资源，抵御波动风险</li>
+</ul>
+<p>我发现，市面上关于德扑的中文内容存在着几个普遍问题：</p>
+<ol>
+<li><strong>碎片化严重</strong> - 缺乏系统性的学习框架</li>
+<li><strong>迷信运气</strong> - 过于强调短期结果而非过程</li>
+<li><strong>方法不科学</strong> - 很多"经验之谈"缺乏数据支持</li>
+<li><strong>心态失衡</strong> - 没有建立正确的长期盈利心态</li>
+</ol>
+<p>因此，我创建了这个知识星球，希望能够提供一个科学、系统、实用的德州扑克学习平台。</p>
+<h2 id="_3">你将在这里获得什么？</h2>
+<h3 id="1">1. 体系化的德扑知识结构</h3>
+<p>我们会从基础规则讲起，逐步建立起涵盖起手牌选择、位置策略、下注技巧、读牌能力、资金管理的完整知识体系。每个环节环环相扣，形成清晰的学习路径。</p>
+<h3 id="2">2. 基于数据和概率的科学打法</h3>
+<p>抛弃那些不靠谱的"感觉打法"，我们将基于大数据统计和游戏理论，讲解每个决策背后的数学逻辑。让你明白为什么要这样打，而不仅仅是"应该这样打"。</p>
+<h3 id="3">3. 心态和情绪管理的实用方法</h3>
+<p>德州扑克不仅考验技术，更考验心理素质。我们将分享如何:</p>
+<ul>
+<li>面对连续损失保持冷静</li>
+<li>管理自我怀疑和焦虑</li>
+<li>避免情绪化决策和倾斜(Tilt)</li>
+<li>建立健康的目标和期望</li>
+</ul>
+<h3 id="4">4. 实战牌例分析与讨论</h3>
+<p>理论结合实践才有价值。我们会定期分析真实牌例，讨论关键决策点，并鼓励成员分享自己的牌局进行集体探讨。</p>
+<h3 id="5">5. 个性化成长路径和反馈</h3>
+<p>不同水平的玩家有不同的需求。我们将根据你的实际情况提供个性化的学习建议，帮助你找到最适合自己的提升方向。</p>
+<h2 id="_4">「德扑思维实验室」的核心理念</h2>
+<h3 id="_5">长期主义</h3>
+<p><em>"选择、判断、自律、忍耐，无谓一时得失，只求长期获利。"</em></p>
+<p>这是我们的座右铭，也是德州扑克的精髓。我们强调:</p>
+<ul>
+<li>决策质量优于结果导向</li>
+<li>长期期望值(EV)大于短期波动</li>
+<li>持续学习改进优于固守经验</li>
+</ul>
+<h3 id="_6">科学思维</h3>
+<p>我们崇尚:</p>
+<ul>
+<li>数据驱动的决策过程</li>
+<li>客观分析而非主观臆断</li>
+<li>持续验证和调整策略</li>
+</ul>
+<h3 id="_7">自我提升</h3>
+<p>德州扑克是一面镜子，照见我们在压力下的决策模式和心理弱点。通过不断反思和改进，我们能够:</p>
+<ul>
+<li>提升决策能力</li>
+<li>增强情绪管理能力</li>
+<li>培养概率思维</li>
+<li>锻炼理性分析能力</li>
+</ul>
+<p>这些能力不仅适用于牌桌，更能应用于生活和职业发展中的各种场景。</p>
+<h2 id="_8">内容计划预览</h2>
+<p>接下来的几周，我将发布以下系列内容:</p>
+<ol>
+<li><strong>德州扑克基础概念与规则剖析</strong></li>
+<li><strong>科学的起手牌选择系统</strong></li>
+<li><strong>位置的威力——为什么说位置比牌力更重要</strong></li>
+<li><strong>四轮下注策略的核心思路</strong></li>
+<li><strong>读牌的艺术——从范围思维开始</strong></li>
+</ol>
+<p>每周还将有:</p>
+<ul>
+<li>Q&amp;A环节解答大家的疑问</li>
+<li>牌例分析与讨论</li>
+<li>实用小技巧分享</li>
+</ul>
+<h2 id="_9">会员参与方式</h2>
+<p>我希望这个知识星球不仅是单向输出，更是一个互动交流的社区。你可以:</p>
+<ol>
+<li><strong>分享疑问</strong> - 任何德扑相关的问题都欢迎提出</li>
+<li><strong>上传牌例</strong> - 分享你的牌局困惑，获得集体智慧</li>
+<li><strong>讨论策略</strong> - 参与策略讨论，表达你的见解</li>
+<li><strong>提出需求</strong> - 告诉我你最想学习的内容</li>
+</ol>
+<h2 id="_10">给新手的建议</h2>
+<p>如果你刚开始接触德州扑克，不要被复杂的术语和策略吓退。我们会从最基础的概念讲起，循序渐进。请记住:</p>
+<ol>
+<li><strong>耐心学习</strong> - 德扑是一项需要时间掌握的技能</li>
+<li><strong>从低额开始</strong> - 在你掌握基本技巧前，保持低额游戏</li>
+<li><strong>重视过程</strong> - 关注决策质量，而非短期结果</li>
+<li><strong>保持好奇</strong> - 质疑、思考、探索是进步的动力</li>
+</ol>
+<h2 id="_11">结语：德扑之外的收获</h2>
+<p>最后，我想分享一个重要的观点:</p>
+<p><em>"不赌，才是赌的最高境界。"</em></p>
+<p>真正精通德州扑克的人明白，这不仅仅是一种游戏，更是一种思维训练和人生智慧。通过系统学习德扑，你将获得:</p>
+<ul>
+<li>面对不确定性的决策能力</li>
+<li>在压力下保持理性的心态</li>
+<li>科学的概率思维方式</li>
+<li>有效的资源管理能力</li>
+<li>对人性的深刻理解</li>
+</ul>
+<p>这些能力将帮助你在各种人生挑战中做出更明智的选择。</p>
+<p>无论你是想成为职业牌手，还是仅仅将德扑作为智力爱好，「德扑思维实验室」都将是你值得信赖的成长伙伴。</p>
+<p>让我们一起，进入这个概率与决策的迷人世界，探索德州扑克的无限可能！</p>
+<p>期待与你在评论区互动，也欢迎私信我分享你的德扑故事和学习需求。</p>
+<p><strong>下一篇预告：《德州扑克基础概念与规则剖析》，敬请期待！</strong></p>
+<hr />
+<p><em>PS: 为了增强学习效果，我已经创建了「德扑词典」和「起手牌参考表」两个文档，星球成员可在置顶消息中找到。建议新手先熟悉这两份资料，为后续学习打好基础。</em></p>
         </article>
-        <button class="back-to-top" onclick="window.scrollTo({{top: 0, behavior: 'smooth'}})">
+        <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
             <i class="fas fa-arrow-up"></i>
         </button>
         <footer class="mt-12 py-6">
@@ -316,7 +405,7 @@ def convert_markdown_to_html():
         </footer>
         <script>
             // 主题切换
-            function toggleTheme() {{
+            function toggleTheme() {
                 const root = document.documentElement;
                 const currentTheme = root.getAttribute('data-theme');
                 const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -328,31 +417,31 @@ def convert_markdown_to_html():
                 // 更新图标
                 const lightIcon = document.querySelector('.light-icon');
                 const darkIcon = document.querySelector('.dark-icon');
-                if (newTheme === 'dark') {{
+                if (newTheme === 'dark') {
                     lightIcon.style.display = 'none';
                     darkIcon.style.display = 'inline-block';
-                }} else {{
+                } else {
                     lightIcon.style.display = 'inline-block';
                     darkIcon.style.display = 'none';
-                }}
-            }}
+                }
+            }
 
             // 初始化主题
-            document.addEventListener('DOMContentLoaded', () => {{
+            document.addEventListener('DOMContentLoaded', () => {
                 const savedTheme = localStorage.getItem('theme') || 'light';
                 document.documentElement.setAttribute('data-theme', savedTheme);
                 
                 // 设置初始图标
                 const lightIcon = document.querySelector('.light-icon');
                 const darkIcon = document.querySelector('.dark-icon');
-                if (savedTheme === 'dark') {{
+                if (savedTheme === 'dark') {
                     lightIcon.style.display = 'none';
                     darkIcon.style.display = 'inline-block';
-                }}
-            }});
+                }
+            });
 
             // 阅读进度条
-            window.addEventListener('scroll', () => {{
+            window.addEventListener('scroll', () => {
                 const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
                 const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
                 const scrolled = (winScroll / height) * 100;
@@ -360,94 +449,36 @@ def convert_markdown_to_html():
                 
                 // 返回顶部按钮
                 const backToTop = document.querySelector('.back-to-top');
-                if (winScroll > 300) {{
+                if (winScroll > 300) {
                     backToTop.style.opacity = '1';
-                }} else {{
+                } else {
                     backToTop.style.opacity = '0';
-                }}
-            }});
+                }
+            });
 
             // 生成目录
-            document.addEventListener('DOMContentLoaded', () => {{
+            document.addEventListener('DOMContentLoaded', () => {
                 const article = document.querySelector('.markdown-body');
                 const toc = document.querySelector('#toc-content');
                 const headings = article.querySelectorAll('h1, h2, h3');
                 const tocItems = [];
 
-                headings.forEach((heading, index) => {{
-                    const id = `heading-${{index}}`;
+                headings.forEach((heading, index) => {
+                    const id = `heading-${index}`;
                     heading.id = id;
                     const level = parseInt(heading.tagName.charAt(1));
                     tocItems.push(`
-                        <div class="pl-${{(level-1)*4}} py-1">
-                            <a href="#${{id}}" class="hover:text-primary text-sm">
-                                ${{heading.textContent}}
+                        <div class="pl-${(level-1)*4} py-1">
+                            <a href="#${id}" class="hover:text-primary text-sm">
+                                ${heading.textContent}
                             </a>
                         </div>
                     `);
-                }});
+                });
 
                 toc.innerHTML = tocItems.join('');
-            }});
+            });
         </script>
     </body>
     </html>
-    """
-
-    # Convert all markdown files
-    course_titles = {
-        'AI时代的老庄智慧研究所': '道法自然：AI时代的老庄智慧研究所',
-        '区块链金融：从入门到精通': '区块链金融：从入门到精通',
-        '德扑思维实验室': '德扑思维实验室：提升战略思考力'
-    }
-
-    # Convert all markdown files
-    for folder in ['AI时代的老庄智慧研究所', '区块链金融：从入门到精通', '德扑思维实验室']:
-        if not os.path.exists(folder):
-            continue
-            
-        # Create articles directory if it doesn't exist
-        articles_dir = os.path.join('articles', folder)
-        os.makedirs(articles_dir, exist_ok=True)
-        
-        # Convert each markdown file
-        for md_file in glob.glob(os.path.join(folder, '*.md')):
-            with open(md_file, 'r', encoding='utf-8') as f:
-                md_content = f.read()
-            
-            # Convert markdown to HTML
-            html_content = markdown.markdown(md_content, extensions=['extra', 'toc'])
-            
-            # Get title from filename
-            original_title = os.path.basename(md_file).replace('.md', '')
-            
-            # Replace "开篇" with the course title for the first article
-            if '开篇' in original_title:
-                title = f'知识课程：{course_titles[folder]}'
-            else:
-                title = original_title
-            
-            # Only add banner image for opening articles
-            banner_image = ''
-            if '开篇' in original_title:
-                banner_image = f'<img src="../images/{image_mapping[folder]}" alt="{title}" class="banner-image">'
-            
-            # Create HTML file with banner image
-            category = folder
-            html = html_template.format(
-                title=title,
-                content=html_content,
-                banner_image=banner_image,
-                category=category
-            )
-            
-            # Save HTML file - replace "开篇" with "知识课程" in the filename
-            output_filename = os.path.basename(md_file).replace('开篇', '知识课程').replace('.md', '.html')
-            html_filename = os.path.join(articles_dir, output_filename)
-            with open(html_filename, 'w', encoding='utf-8') as f:
-                f.write(html)
-
-if __name__ == '__main__':
-    # Create articles directory
-    os.makedirs('articles', exist_ok=True)
-    convert_markdown_to_html() 
+    
