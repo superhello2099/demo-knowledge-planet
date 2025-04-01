@@ -132,30 +132,37 @@ def convert_markdown_to_html():
 
             .theme-toggle {{
                 position: fixed;
-                top: 1.5rem;
-                right: 1.5rem;
-                z-index: 1000;
+                top: 1rem;
+                right: 1rem;
+                z-index: 1001;
                 background: var(--bg-color);
                 border: 1px solid var(--border-color);
                 padding: 0.75rem 1rem;
-                border-radius: 0.5rem;
+                border-radius: 0.75rem;
                 cursor: pointer;
                 transition: all 0.3s ease;
                 display: flex;
                 align-items: center;
-                gap: 0.5rem;
+                gap: 0.75rem;
                 font-size: 0.875rem;
                 color: var(--text-color);
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+            }}
+
+            .theme-toggle i {{
+                font-size: 1.125rem;
+                transition: transform 0.3s ease;
             }}
 
             .theme-toggle:hover {{
                 transform: translateY(-2px);
-                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             }}
 
-            .theme-toggle i {{
-                font-size: 1rem;
+            .theme-toggle:hover i {{
+                transform: rotate(15deg);
             }}
 
             .progress-bar {{
@@ -273,11 +280,15 @@ def convert_markdown_to_html():
                 .theme-toggle {{
                     top: 0.75rem;
                     right: 0.75rem;
-                    padding: 0.5rem 0.75rem;
+                    padding: 0.5rem;
                 }}
 
                 .theme-toggle .theme-text {{
                     display: none;
+                }}
+
+                .theme-toggle i {{
+                    font-size: 1.25rem;
                 }}
             }}
 
