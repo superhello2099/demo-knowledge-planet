@@ -33,6 +33,7 @@ def convert_markdown_to_html():
             body {{
                 font-family: 'Noto Sans SC', sans-serif;
                 color: #1f2937;
+                background-color: #f8fafc;
             }}
             .markdown-body {{
                 box-sizing: border-box;
@@ -41,6 +42,14 @@ def convert_markdown_to_html():
                 margin: 0 auto;
                 padding: 45px;
                 color: #1f2937;
+                background-color: #ffffff;
+            }}
+            article {{
+                background: #ffffff;
+                margin: 1rem;
+                border-radius: 0.5rem;
+                overflow: hidden;
+                box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
             }}
             .banner-image {{
                 width: 100%;
@@ -102,39 +111,56 @@ def convert_markdown_to_html():
                 }}
             }}
             @media (max-width: 767px) {{
+                article {{
+                    margin: 0;
+                    border-radius: 0;
+                }}
                 .markdown-body {{
-                    padding: 15px;
+                    padding: 1rem;
+                    margin: 0;
                     font-size: 16px;
                     line-height: 1.6;
                 }}
                 .markdown-body h1 {{
-                    font-size: 1.75rem;
+                    font-size: 1.5rem;
                     margin-top: 1rem;
+                    margin-bottom: 1rem;
+                    font-weight: 600;
                 }}
                 .markdown-body h2 {{
-                    font-size: 1.5rem;
+                    font-size: 1.25rem;
                     margin-top: 1.5rem;
+                    margin-bottom: 0.75rem;
+                    font-weight: 600;
+                }}
+                .markdown-body h3 {{
+                    font-size: 1.125rem;
+                    margin-top: 1.25rem;
+                    margin-bottom: 0.75rem;
+                    font-weight: 600;
                 }}
                 .markdown-body p {{
                     margin-bottom: 1rem;
-                }}
-                header .breadcrumbs {{
-                    display: none;
+                    opacity: 1;
                 }}
                 header {{
-                    padding: 0.5rem 0;
+                    margin: 0;
+                    padding: 0;
+                }}
+                header .max-w-7xl {{
+                    padding: 0;
                 }}
                 header a {{
                     display: flex;
                     align-items: center;
-                    padding: 0.5rem 1rem;
+                    padding: 1rem;
                     font-size: 1rem;
                     color: #4f46e5;
+                    background: #ffffff;
                 }}
                 .banner-image {{
-                    margin: 0 -15px 1rem -15px;
-                    width: calc(100% + 30px);
-                    max-width: none;
+                    margin: 0;
+                    width: 100%;
                     border-radius: 0;
                 }}
             }}
